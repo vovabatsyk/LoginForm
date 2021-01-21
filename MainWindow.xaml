@@ -3,10 +3,125 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LoginForm"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Login" Height="515" Width="365" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF000217" Offset="0.053"/>
+            <GradientStop Color="#FF1E245D" Offset="0.768"/>
+            <GradientStop Color="#FF191E46" Offset="0.52"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Key="ComboboxButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="#0D5FA8" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="PreviewMouseDown">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="1,1,0,0"></ThicknessAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="PreviewMouseUp">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin" Duration="0:0:0.100" To="0"></ThicknessAnimation>
+                                     </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="25"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="300" />
+            <RowDefinition  Height="90"/>
+        </Grid.RowDefinitions>
+        <Grid Name="Toolbar" Background="Transparent" Grid.Row="0" MouseDown="toolbar_MouseDown">
+            <Polygon Fill="White" Opacity="0.2" Points="107,0,
+                 115,7,
+                 249,7
+                 257,0"/>
+            <StackPanel Orientation="Horizontal" Margin="315,0,0,0">
+                <Image Name="MinButton" Height="13" Width="13" Margin="0,0,5,0" MouseDown="MinButton_MouseDown">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Source/minimaze.png"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinButton}" Value="True">
+                                    <Setter Property="Source" Value="Source/minimaze-active.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                    <Image.Effect>
+                        <BlurEffect Radius="2"></BlurEffect>
+                    </Image.Effect>
+                </Image>
+                <Image Name="CloseButton" Height="13" Width="13" MouseDown="CloseButton_MouseDown">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Source/close.png"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CloseButton}" Value="True">
+                                    <Setter Property="Source" Value="Source/close-active.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                    <Image.Effect>
+                        <BlurEffect Radius="2"></BlurEffect>
+                    </Image.Effect>
+                </Image>
+            </StackPanel>
+        </Grid>
+        <DockPanel Background="Transparent" Name="LogoContainer" Grid.Row="1" MouseDown="LogoContainer_MouseDown">
+            <Image Width="90" Height="90" Source="Source/logoITStep.png" Margin="50,0,0,0"></Image>
+            <Image Width="90" Height="90" Source="Source/mystat.png"></Image>
+        </DockPanel>
+        <Border Name="ComboBorder" Grid.Row="2" Height="24" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,15,0,0" CornerRadius="2" BorderThickness="1" Background="Black">
+          <Border.Style>
+              <Style TargetType="{x:Type Border}">
+                  <Setter Property="BorderBrush" Value="#FF333842"></Setter>
+                  <Style.Triggers>
+                      <Trigger Property="IsMouseOver" Value="True">
+                          <Setter Property="BorderBrush" Value="#0099D8"></Setter>
+                      </Trigger>
+                      <EventTrigger RoutedEvent="PreviewMouseDown">
+                          <BeginStoryboard>
+                              <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF333842"></ColorAnimation>                              </Storyboard>
+                          </BeginStoryboard>
+                      </EventTrigger>
+                      <EventTrigger RoutedEvent="PreviewMouseUp">
+                          <BeginStoryboard>
+                              <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#0099D8"></ColorAnimation>                              </Storyboard>
+                          </BeginStoryboard>
+                      </EventTrigger>
+                    </Style.Triggers>
+              </Style>
+          </Border.Style>
+            <Button Style="{StaticResource ComboboxButton}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="14" Width="14" Margin="5,0,0,0" Source="Source/globus-active.png" />
+                    <Image Height="14" Width="14" Margin="5,0,0,0" Source="Source/down.png" />
+                </StackPanel>
+            </Button>
+        </Border>
     </Grid>
 </Window>

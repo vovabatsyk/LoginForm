@@ -94,5 +94,43 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\minimaze.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="minimaze.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons8-закрыть-окно-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\close-active.png" />
+    <Resource Include="Source\minimaze-active.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\logoITStep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\mystat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\globus-active.png" />
+    <Resource Include="Source\globus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\down.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
