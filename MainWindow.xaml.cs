@@ -50,5 +50,42 @@ namespace LoginForm
                 this.DragMove();
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(SettingsBtn.Visibility == Visibility.Hidden)
+            {
+                SettingsBtn.Visibility = Visibility.Visible;
+                LanguageBtn.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                SettingsBtn.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (LanguageBtn.Visibility == Visibility.Hidden)
+            {
+                LanguageBtn.Visibility = Visibility.Visible;
+                SettingsBtn.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                LanguageBtn.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void BtnLanguageClick(object sender, RoutedEventArgs e)
+        {
+            LanguageBtn.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnSettingClick(object sender, RoutedEventArgs e)
+        {
+            SettingsBtn.Visibility = Visibility.Hidden;
+
+        }
     }
 }
