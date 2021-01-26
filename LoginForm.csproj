@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logoITStep.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -101,20 +104,11 @@
     <Resource Include="minimaze.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icons8-закрыть-окно-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Source\close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="close.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\close-active.png" />
     <Resource Include="Source\minimaze-active.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\logo.jpg" />
@@ -143,6 +137,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\answer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\azure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Source\github.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logoITStep.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -87,5 +87,10 @@ namespace LoginForm
             SettingsBtn.Visibility = Visibility.Hidden;
 
         }
+
+        private void OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            WaterMark.Visibility = TextBoxPassword.Password.Length > 0 ? Visibility.Hidden : Visibility.Visible;
+        }
     }
 }
