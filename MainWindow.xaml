@@ -66,15 +66,30 @@
         </Style>
         <Style x:Key="TextBoxCustom" TargetType="TextBox">
             <Setter Property="Background" Value="#0D5FA8" />
-            <Setter Property="Height" Value="25" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="35" />
             <Setter Property="Foreground" Value="#FBA438" />
-            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderBrush" Value="#0099D8" />
+            <Setter Property="Padding" Value="10,0,0,0" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
+                        <Grid x:Name="Root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" SnapsToDevicePixels="True">
+                            <Border x:Name="Background" BorderThickness="1" CornerRadius="2"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}" />
+                            <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0"
+                                          Padding="{TemplateBinding Padding}" IsTabStop="False" Background="{x:Null}" TextElement.Foreground="{TemplateBinding Foreground}"/>
+
+                        </Grid>
                         <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FBA438"></Setter>
+                                <Setter Property="Foreground" Value="White"></Setter>
+                            </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#0099D8"></Setter>
+                                <Setter Property="BorderBrush" Value="#FBA438"></Setter>
                                 <Setter Property="Foreground" Value="White"></Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -164,7 +179,7 @@
                 </StackPanel>
             </Button>
         </Border>
-        <Grid Name="LanguageBtn" Visibility="Hidden" Grid.Row="2" Height="160" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,42,0,0">
+        <Grid Name="LanguageBtn" Panel.ZIndex="999" Visibility="Hidden" Grid.Row="2" Height="160" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,42,0,0">
             <Polygon Fill="Black" StrokeThickness="2" Stroke="Black" Points="0,8,0,145,190,145,190,8,37,8,29,0,21,8" Grid.ColumnSpan="2" />
             <Polygon Fill="#0D5FA8" StrokeThickness="1" Stroke="White" Points="0,8,0,145,190,145,190,8,37,8,29,0,21,8" Grid.ColumnSpan="2" />
             <Grid Height="132" Width="186" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,10,0,0" Grid.ColumnSpan="2">
@@ -219,7 +234,7 @@
                 </StackPanel>
             </Button>
         </Border>
-        <Grid Name="SettingsBtn" Visibility="Hidden" Grid.Row="2" Height="125" Width="310" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,42,20,0">
+        <Grid Name="SettingsBtn" Panel.ZIndex="999" Visibility="Hidden" Grid.Row="2" Height="125" Width="310" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,42,20,0">
             <Polygon Fill="Black" StrokeThickness="2" Stroke="Black" Points="0,8,0,120,300,120,300,8,295,8,287,0,279,8" HorizontalAlignment="Center" />
             <Polygon Fill="#0D5FA8" StrokeThickness="1" Stroke="White" Points="0,8,0,120,300,120,300,8,295,8,287,0,279,8" HorizontalAlignment="Center" />
             <Grid Height="132" Width="295" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,-17" >
@@ -231,7 +246,7 @@
                                 <ColumnDefinition Width="40*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Settings" Margin="30,0,0,0" Grid.ColumnSpan="2" />
-                            <Image HorizontalAlignment="Left" Height="13" Width="13" Margin="10,2,0,2" Source="Source/settings.png" />
+                            <Image Grid.Column="0" HorizontalAlignment="Left" Height="13" Width="13" Margin="10,2,0,2" Source="Source/settings.png" />
                         </Grid>
                     </Button>
                     <Button Style="{StaticResource ComboboxButtons}" Click="BtnSettingClick">
@@ -250,8 +265,78 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <TextBox Grid.Row="2" Style="{StaticResource TextBoxCustom}">
-
-        </TextBox>
+        <TextBox x:Name="TextBoxLogin" Grid.Row="2" Style="{StaticResource TextBoxCustom}" Margin="25,55,25,0" VerticalAlignment="Top" />
+        <TextBlock IsHitTestVisible="False" FontSize="14" Text="Login/Email" Grid.Row="2" Margin="37,63,0,0" VerticalAlignment="Top" Foreground="#FBA438 ">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=TextBoxLogin}" Value="">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <TextBox x:Name="TextBoxPassword" Grid.Row="2" Style="{StaticResource TextBoxCustom}"  Margin="25,100,25,0" VerticalAlignment="Top" />
+        <TextBlock IsHitTestVisible="False" FontSize="14" Text="Password" Grid.Row="2" Margin="37,108,0,0" VerticalAlignment="Top" Foreground="#FBA438 ">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=TextBoxPassword}" Value="">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <ToggleButton x:Name="ToggleButton" Grid.Row="2" Height="30" Width="140" Foreground="#FF009AD9" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"  Content="Remember Me"  Margin="25,145,0,0">
+            <ToggleButton.Template>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Height="20" Width="20" CornerRadius="2" BorderThickness="1" Background="#0D5FA7" HorizontalAlignment="Left">
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="BorderBrush" Value="#FF333842"></Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="#0099D8"></Setter>
+                                        </Trigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseDown">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#FF333842"></ColorAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" Duration="0:0:0.100" To="#0099D8"></ColorAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style        >
+                            </Border.Style>
+                            <Image Margin="4">
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}}" Value="true">
+                                                <Setter Property="Image.Source" Value="Source/checked.png"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Border>
+                        <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="10,0,0,0"></ContentPresenter>
+                    </StackPanel>
+                </ControlTemplate>
+            </ToggleButton.Template>
+        </ToggleButton>
+        <Image Grid.Row="2" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="150,145,190,130" Source="Source/answer.png"></Image>
     </Grid>
 </Window>
